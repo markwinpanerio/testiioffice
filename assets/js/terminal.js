@@ -28273,10 +28273,13 @@ function terminalCamera() {
   var $checkinSuccessWrapper = (0, _jquery2.default)('#js-checkin-success');
   var $checkinErrorWrapper = (0, _jquery2.default)('#js-checkin-fail');
   var $checkinWrapper = (0, _jquery2.default)('.js-checkin-wrap');
-
+  // video.setAttribute("playsinline", true);
+  // video.setAttribute("controls", true);
   var scanner = new _instascan2.default.Scanner({
     video: document.getElementById('scanner')
   });
+
+  // document.getElementById('scanner').removeAttribute('autoplay');
   _instascan2.default.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
       scanner.start(cameras[0]);
