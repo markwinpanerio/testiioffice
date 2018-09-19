@@ -28273,13 +28273,10 @@ function terminalCamera() {
   var $checkinSuccessWrapper = (0, _jquery2.default)('#js-checkin-success');
   var $checkinErrorWrapper = (0, _jquery2.default)('#js-checkin-fail');
   var $checkinWrapper = (0, _jquery2.default)('.js-checkin-wrap');
-  // video.setAttribute("playsinline", true);
-  // video.setAttribute("controls", true);
+
   var scanner = new _instascan2.default.Scanner({
     video: document.getElementById('scanner')
   });
-
-  // document.getElementById('scanner').removeAttribute('autoplay');
   _instascan2.default.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
       scanner.start(cameras[0]);
@@ -28292,27 +28289,31 @@ function terminalCamera() {
   scanner.addListener('scan', function (content) {
     var terminal = (0, _jquery2.default)('#scanner');
 
-    _jquery2.default.ajax({
-      url: '/api/terminals/branches/subscriber/checkin',
-      method: 'POST',
-      dataType: 'json',
-      beforeSend: function beforeSend(xhr) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + terminal.attr('data-auth'));
-      },
-      data: {
-        'checkin': content,
-        'terminal': terminal.attr('data-terminal')
-      },
-      success: function success(result) {
-        $checkinWrapper.fadeOut();
-        $checkinSuccessWrapper.fadeIn();
-      },
-      error: function error(result) {
-        var json = result.responseJSON;
-        $checkinWrapper.fadeOut();
-        $checkinErrorWrapper.fadeIn();
-      }
-    });
+    if (content !== '') {
+      $checkinWrapper.fadeOut();
+      $checkinSuccessWrapper.fadeIn();
+    }
+
+    // $.ajax({
+    //   url: '/api/terminals/branches/subscriber/checkin',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   beforeSend: function (xhr) {
+    //     xhr.setRequestHeader('Authorization', 'Bearer ' + terminal.attr('data-auth'));
+    //   },
+    //   data: {
+    //     'checkin' : content,
+    //     'terminal' : terminal.attr('data-terminal')
+    //   },
+    //   success: function(result){
+
+    //   },
+    //   error: function(result) {
+    //     let json = result.responseJSON;
+    //     $checkinWrapper.fadeOut();
+    //     $checkinErrorWrapper.fadeIn();
+    //   }
+    // });
   });
 }
 

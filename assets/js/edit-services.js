@@ -80,16 +80,6 @@ var editServiceButton = document.querySelector('#js-edit-service-button');
 var editServiceModal = document.querySelector('#js-modal-body');
 var editServiceInputOldValue = [];
 
-$('#service-edit').click(function () {
-  $('#services-info').addClass('hide');
-  $('#services-info-form').removeClass('hide');
-});
-
-$('#service-edit-cancel').click(function () {
-  $('#services-info-form').addClass('hide');
-  $('#services-info').removeClass('hide');
-});
-
 function addCommas(value) {
   value += '';
   value = value.replace(',', '');value = value.replace(',', '');value = value.replace(',', '');

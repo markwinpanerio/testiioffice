@@ -130,7 +130,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var editForm = document.querySelectorAll('.js-edit-form');
 var editButton = void 0,
-    cancelButton = void 0,
     updateButton = void 0,
     editInfoContainer = void 0,
     editInfoForm = void 0,
@@ -139,11 +138,9 @@ var editButton = void 0,
 
 for (var iEditFormButton = 0; iEditFormButton < editForm.length; iEditFormButton++) {
   editButton = editForm[iEditFormButton].querySelector('.js-edit-info');
-  cancelButton = editForm[iEditFormButton].querySelector('.js-edit-cancel');
   updateButton = editForm[iEditFormButton].querySelector('.js-edit-update');
 
   editButton.addEventListener('click', function () {
-    $('.is-active').removeClass('is-active');
     editInput = this.parentElement.parentElement.querySelectorAll('.js-edit-info-input');
     editText = this.parentElement.parentElement.querySelectorAll('.js-edit-info-text');
     editInfoContainer = this.parentElement.parentElement.querySelector('.js-select-item');
@@ -151,7 +148,7 @@ for (var iEditFormButton = 0; iEditFormButton < editForm.length; iEditFormButton
 
     this.classList.add('is-active');
     this.parentElement.parentElement.querySelector('.js-edit-update').classList.add('is-active');
-    this.parentElement.parentElement.querySelector('.js-edit-cancel').classList.add('is-active');
+
     if (editInfoContainer !== null && editInfoForm !== null) {
       editInfoContainer.classList.add('is-active');
       editInfoForm.classList.add('is-active');
@@ -163,8 +160,21 @@ for (var iEditFormButton = 0; iEditFormButton < editForm.length; iEditFormButton
     }
   });
 
-  cancelButton.addEventListener('click', function () {
-    $('.is-active').removeClass('is-active');
+  updateButton.addEventListener('click', function () {
+    this.classList.remove('is-active');
+    this.parentElement.parentElement.querySelector('.js-edit-info').classList.remove('is-active');
+    editInfoContainer = this.parentElement.parentElement.querySelector('.js-select-item');
+    editInfoForm = this.parentElement.parentElement.querySelector('.js-select-form');
+
+    if (editInfoContainer !== null && editInfoForm !== null) {
+      editInfoContainer.classList.remove('is-active');
+      editInfoForm.classList.remove('is-active');
+    }
+
+    for (var iEditInputCount = 0; iEditInputCount < editInput.length; iEditInputCount++) {
+      editInput[iEditInputCount].classList.remove('is-active');
+      editText[iEditInputCount].classList.remove('is-active');
+    }
   });
 }
 
@@ -179,7 +189,9 @@ function movingCheckedItems() {
     checkboxItem[iCheckBoxItem].addEventListener('click', function () {
 
       if (this.checked) {
+        // console.log();
         allCheckedItem.appendChild(this.parentElement.parentElement);
+        // this.parentElement;
       } else {
         notCheckedItem.appendChild(this.parentElement.parentElement);
       }
@@ -208,8 +220,6 @@ function createCheckBoxElement() {
 
   //set -type- attribute in checkbox
   checkboxElement.setAttribute('type', 'checkbox');
-  checkboxElement.setAttribute('name', 'amenities[]');
-  checkboxElement.setAttribute('value', inputAddedItemValue);
   checkboxElement.classList.add('js-checkbox-item');
 
   //add text value in checkbox label tag
