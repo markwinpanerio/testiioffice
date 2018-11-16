@@ -1,4 +1,3 @@
-console.warn("This script is development version.");
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,74 +63,12 @@ console.warn("This script is development version.");
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 655);
+/******/ 	return __webpack_require__(__webpack_require__.s = 192);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 338:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _jquery = __webpack_require__(6);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var $loginForm = (0, _jquery2.default)('#js-login');
-var $email = (0, _jquery2.default)('#js-login-email');
-var $password = (0, _jquery2.default)('#js-login-password');
-var $loginInput = (0, _jquery2.default)('.js-login-input');
-var $errorMessage = (0, _jquery2.default)('.js-error-message');
-var $emailValidation = void 0;
-var $passwordValidation = void 0;
-
-$loginForm.on('submit', function () {
-  _jquery2.default.ajax({
-    url: '/api/login',
-    method: 'POST',
-    data: {
-      'email': $email.val(),
-      'password': $password.val()
-    },
-    success: function success(result) {
-      localStorage.setItem('auth_token', result.data.token);
-      $errorMessage.stop().fadeOut();
-    },
-    error: function error(result) {
-
-      if (!result.responseJSON.data) return false;
-
-      $emailValidation = result.responseJSON.data.email;
-      $passwordValidation = result.responseJSON.data.password;
-
-      if ($emailValidation) {
-        $errorMessage.stop().fadeIn();
-      }
-
-      if ($passwordValidation) {
-        $errorMessage.stop().fadeIn();
-      }
-    }
-  });
-
-  $loginInput.each(function () {
-    var $this = (0, _jquery2.default)(this);
-
-    if ($this.val() !== 0) {
-      $errorMessage.stop().fadeOut();
-    }
-  });
-
-  return false;
-});
-
-/***/ },
-
-/***/ 6:
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10502,13 +10439,71 @@ return jQuery;
 
 /***/ },
 
-/***/ 655:
+/***/ 154:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
-__webpack_require__(338);
+const $loginForm = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-login');
+const $email = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-login-email');
+const $password = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-login-password');
+const $loginInput = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-login-input');
+const $errorMessage = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-error-message');
+let $emailValidation;
+let $passwordValidation;
+
+$loginForm.on('submit', function () {
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+    url: '/api/login',
+    method: 'POST',
+    data: {
+      'email': $email.val(),
+      'password': $password.val()
+    },
+    success: function (result) {
+      localStorage.setItem('auth_token', result.data.token);
+      $errorMessage.stop().fadeOut();
+    },
+    error: function (result) {
+
+      if (!result.responseJSON.data) return;
+
+      $emailValidation = result.responseJSON.data.email;
+      $passwordValidation = result.responseJSON.data.password;
+
+      if ($emailValidation) {
+        $errorMessage.stop().fadeIn();
+      }
+
+      if ($passwordValidation) {
+        $errorMessage.stop().fadeIn();
+      }
+    }
+  });
+
+  $loginInput.each(function () {
+    const $this = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this);
+
+    if ($this.val() !== 0) {
+      $errorMessage.stop().fadeOut();
+    }
+  });
+
+  return false;
+});
+
+/***/ },
+
+/***/ 192:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_login__ = __webpack_require__(154);
+
 
 /***/ }
 

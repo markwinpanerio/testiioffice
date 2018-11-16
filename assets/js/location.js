@@ -1,4 +1,3 @@
-console.warn("This script is development version.");
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,230 +63,12 @@ console.warn("This script is development version.");
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 654);
+/******/ 	return __webpack_require__(__webpack_require__.s = 191);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 333:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = multipleMapPins;
-
-var _jquery = __webpack_require__(6);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _mapPin = __webpack_require__(349);
-
-var _mapPin2 = _interopRequireDefault(_mapPin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function multipleMapPins() {
-  var $mapHook = (0, _jquery2.default)('#js-iioffice-pin');
-
-  if ($mapHook) {
-    'use strict';
-
-    (function map() {
-
-      if (!window.google) {
-        return;
-      }
-
-      google.maps.event.addDomListener(window, 'load', initMap);
-
-      function initMap() {
-
-        //MAP THEME
-        var options = {
-          "clickableIcons": false,
-          "disableDoubleClickZoom": false,
-          "draggable": true,
-          "fullscreenControl": false,
-          "keyboardShortcuts": true,
-          "mapMaker": false,
-          "mapTypeControl": false,
-          "mapTypeControlOptions": {
-            "text": "Default (depends on viewport size etc.)",
-            "style": 0
-          },
-          "mapTypeId": "roadmap",
-          "rotateControl": true,
-          "scaleControl": false,
-          "scrollwheel": false,
-          "streetViewControl": true,
-          "styles": false,
-          "zoomControl": true
-        };
-
-        // THIS SCRIPT IS FOR MUTIPLE PINS//
-        // START OF MULTIPLE PINS/MARKERS SCRIPT //
-        var $mapCanvas = $mapHook;
-
-        var $mapListItem = _mapPin2.default;
-        var markers = Array.prototype.map.call($mapListItem, function (el) {
-          return {
-            lat: el.lat,
-            lng: el.lng,
-            name: el.branchName,
-            address: el.branchAddress,
-            img: el.branchImage
-          };
-        });
-
-        //CONSOLE LOG JUST TO MAKE SURE THAT ALL PINS ARE BEING FETCHED
-        // console.log(markers);
-
-        //COMPUTING TOTAL LATITUDE
-        var totalLat = markers.reduce(function (sum, marker) {
-          return sum + +marker.lat;
-        }, 0);
-
-        //COMPUTING TOTAL LONGITUDE
-        var totalLng = markers.reduce(function (sum, marker) {
-          return sum + +marker.lng;
-        }, 0);
-
-        var lngAverage = totalLng / markers.filter(function (item) {
-          return item.lng;
-        }).length; //GETTING THE AVERAGE OF TOTAL LONGITUDE
-        var latAverage = totalLat / markers.filter(function (item) {
-          return item.lat;
-        }).length; //GETTING THE AVERAGE OF TOTAL LATITUDE
-
-        var mapOptions = {
-          center: new google.maps.LatLng(latAverage, lngAverage)
-        };
-
-        //MARKER SIZE
-        var markerSize = {
-          x: 22,
-          y: 40
-        };
-
-        var map = new google.maps.Map($mapCanvas[0], mapOptions);
-        map.setOptions(options);
-
-        var bounds = new google.maps.LatLngBounds();
-        var markersPins = [];
-
-        map.fitBounds(bounds); //auto zoom
-        map.panToBounds(bounds); //auto center
-
-        var newMarkers = [];
-        var count = void 0;
-        var iiofficeMarker = void 0;
-
-        //for overriding text
-        var $branchContentContainer = (0, _jquery2.default)('#js-branch');
-        var $branchContentImage = $branchContentContainer.find('.js-branch-image');
-        var $branchContentName = $branchContentContainer.find('.js-branch-name');
-        var $branchContentAddress = $branchContentContainer.find('.js-branch-address');
-
-        function intialize() {
-
-          markers.forEach(function (marker, index) {
-            var mapLatLng = new google.maps.LatLng(+marker.lat, +marker.lng);
-            var branchImage = marker.img;
-            var branchName = marker.name;
-            var branchAddress = marker.address;
-
-            //PIN MARKER
-            iiofficeMarker = new google.maps.Marker({
-              position: mapLatLng,
-              map: map
-            });
-
-            if (index === 0) {
-              iiofficeMarker.setIcon('assets/images/iioffice-map-pin-active.svg');
-              $branchContentName.html(branchName);
-              $branchContentAddress.html(branchAddress);
-              $branchContentImage.css({
-                'background-image': 'url(' + branchImage + ')'
-              });
-            } else {
-              iiofficeMarker.setIcon('assets/images/iioffice-map-pin.svg');
-            }
-
-            bounds.extend(iiofficeMarker.getPosition());
-
-            var i = void 0;
-            var activeMarker = void 0;
-            google.maps.event.addListener(iiofficeMarker, 'click', function (iiofficeMarker, i) {
-              return function () {
-
-                $branchContentName.html(branchName);
-                $branchContentAddress.html(branchAddress);
-                $branchContentImage.css({
-                  'background-image': 'url(' + branchImage + ')'
-                });
-
-                for (var j = 0; j < newMarkers.length; j++) {
-                  newMarkers[j].setIcon('assets/images/iioffice-map-pin.svg');
-                }
-                iiofficeMarker.setIcon('assets/images/iioffice-map-pin-active.svg');
-              };
-            }(iiofficeMarker, i));
-            newMarkers.push(iiofficeMarker);
-          });
-        }
-
-        intialize();
-
-        // END OF MULTIPLE PINS/MARKERS SCRIPT //
-      }
-    })();
-  }
-}
-
-/***/ },
-
-/***/ 349:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = [{
-  'lat': '35.667100513545336',
-  'lng': '139.81617718935013',
-  'branchName': 'iioffice of LIG',
-  'branchAddress': 'Ueno, Tokyo, Japan',
-  'branchImage': 'assets/images/branch-hiroshima.jpg'
-}, {
-  'lat': '35.5659377',
-  'lng': '139.51599329999995',
-  'branchName': 'iioffice of Cebu',
-  'branchAddress': 'ARINDA V. PARAS BLDG, 2nd floor,, Don Gil Garcia St, Lungsod ng Cebu, Lalawigan ng Cebu',
-  'branchImage': 'assets/images/branch-cebu.jpg'
-}, {
-  'lat': '35.4659377',
-  'lng': '139.61599329999995',
-  'branchName': 'iioffice of Ueno',
-  'branchAddress': 'Japan, 〒110-0015 Tokyo, 台東区Higashiueno, 2 Chome−18−7 共同ビル上野',
-  'branchImage': 'assets/images/branch-japan.jpg'
-}, {
-  'lat': '35.2808776',
-  'lng': '139.01124920000002',
-  'branchName': 'iioffice of Hiroshima',
-  'branchAddress': '〒730-0053 広島県広島市中区東千田町1-1-61 hitoto広島 ナレッジスクエア1F',
-  'branchImage': 'assets/images/branch-hiroshima.jpg'
-}];
-
-/***/ },
-
-/***/ 6:
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10658,19 +10439,204 @@ return jQuery;
 
 /***/ },
 
-/***/ 654:
+/***/ 150:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_map_pin_js__ = __webpack_require__(160);
+/* harmony export (immutable) */ exports["a"] = multipleMapPins;
 
 
-var _multiplePin = __webpack_require__(333);
 
-var _multiplePin2 = _interopRequireDefault(_multiplePin);
+function multipleMapPins() {
+  const $mapHook = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-iioffice-pin');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  if ($mapHook) {
+    'use strict';
 
-(0, _multiplePin2.default)();
+    (function map() {
+
+      if (!window.google) {
+        return;
+      }
+
+      google.maps.event.addDomListener(window, 'load', initMap);
+
+      function initMap() {
+
+        //MAP THEME
+        const options = {
+          "clickableIcons": false,
+          "disableDoubleClickZoom": false,
+          "draggable": true,
+          "fullscreenControl": false,
+          "keyboardShortcuts": true,
+          "mapMaker": false,
+          "mapTypeControl": false,
+          "mapTypeControlOptions": {
+            "text": "Default (depends on viewport size etc.)",
+            "style": 0
+          },
+          "mapTypeId": "roadmap",
+          "rotateControl": true,
+          "scaleControl": false,
+          "scrollwheel": false,
+          "streetViewControl": true,
+          "styles": false,
+          "zoomControl": true
+        };
+
+        // THIS SCRIPT IS FOR MUTIPLE PINS//
+        // START OF MULTIPLE PINS/MARKERS SCRIPT //
+        let $mapCanvas = $mapHook;
+
+        const $mapListItem = __WEBPACK_IMPORTED_MODULE_1__data_map_pin_js__["a" /* default */];
+        const markers = Array.prototype.map.call($mapListItem, el => {
+          return {
+            lat: el.lat,
+            lng: el.lng,
+            name: el.branchName,
+            address: el.branchAddress,
+            img: el.branchImage
+          };
+        });
+
+        //CONSOLE LOG JUST TO MAKE SURE THAT ALL PINS ARE BEING FETCHED
+        // console.log(markers);
+
+        //COMPUTING TOTAL LATITUDE
+        let totalLat = markers.reduce(function (sum, marker) {
+          return sum + +marker.lat;
+        }, 0);
+
+        //COMPUTING TOTAL LONGITUDE
+        let totalLng = markers.reduce(function (sum, marker) {
+          return sum + +marker.lng;
+        }, 0);
+
+        let lngAverage = totalLng / markers.filter(item => item.lng).length; //GETTING THE AVERAGE OF TOTAL LONGITUDE
+        let latAverage = totalLat / markers.filter(item => item.lat).length; //GETTING THE AVERAGE OF TOTAL LATITUDE
+
+        let mapOptions = {
+          center: new google.maps.LatLng(latAverage, lngAverage)
+        };
+
+        let map = new google.maps.Map($mapCanvas[0], mapOptions);
+        map.setOptions(options);
+
+        let bounds = new google.maps.LatLngBounds();
+
+        map.fitBounds(bounds); //auto zoom
+        map.panToBounds(bounds); //auto center
+
+        let newMarkers = [];
+        let iiofficeMarker;
+
+        //for overriding text
+        const $branchContentContainer = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-branch');
+        const $branchContentImage = $branchContentContainer.find('.js-branch-image');
+        const $branchContentName = $branchContentContainer.find('.js-branch-name');
+        const $branchContentAddress = $branchContentContainer.find('.js-branch-address');
+
+        function intialize() {
+
+          markers.forEach((marker, index) => {
+            let mapLatLng = new google.maps.LatLng(+marker.lat, +marker.lng);
+            let branchImage = marker.img;
+            let branchName = marker.name;
+            let branchAddress = marker.address;
+
+            //PIN MARKER
+            iiofficeMarker = new google.maps.Marker({
+              position: mapLatLng,
+              map: map
+            });
+
+            if (index === 0) {
+              iiofficeMarker.setIcon('assets/images/iioffice-map-pin-active.svg');
+              $branchContentName.html(branchName);
+              $branchContentAddress.html(branchAddress);
+              $branchContentImage.css({
+                'background-image': `url(${branchImage})`
+              });
+            } else {
+              iiofficeMarker.setIcon('assets/images/iioffice-map-pin.svg');
+            }
+
+            bounds.extend(iiofficeMarker.getPosition());
+
+            let i;
+            google.maps.event.addListener(iiofficeMarker, 'click', function (iiofficeMarker) {
+              return function () {
+
+                $branchContentName.html(branchName);
+                $branchContentAddress.html(branchAddress);
+                $branchContentImage.css({
+                  'background-image': `url(${branchImage})`
+                });
+
+                for (let j = 0; j < newMarkers.length; j++) {
+                  newMarkers[j].setIcon('assets/images/iioffice-map-pin.svg');
+                }
+                iiofficeMarker.setIcon('assets/images/iioffice-map-pin-active.svg');
+              };
+            }(iiofficeMarker, i));
+            newMarkers.push(iiofficeMarker);
+          });
+        }
+
+        intialize();
+
+        // END OF MULTIPLE PINS/MARKERS SCRIPT //
+      }
+    })();
+  }
+}
+
+/***/ },
+
+/***/ 160:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ exports["a"] = [{
+  'lat': '35.667100513545336',
+  'lng': '139.81617718935013',
+  'branchName': 'iioffice of LIG',
+  'branchAddress': 'Ueno, Tokyo, Japan',
+  'branchImage': 'assets/images/branch-hiroshima.jpg'
+}, {
+  'lat': '35.5659377',
+  'lng': '139.51599329999995',
+  'branchName': 'iioffice of Cebu',
+  'branchAddress': 'ARINDA V. PARAS BLDG, 2nd floor,, Don Gil Garcia St, Lungsod ng Cebu, Lalawigan ng Cebu',
+  'branchImage': 'assets/images/branch-cebu.jpg'
+}, {
+  'lat': '35.4659377',
+  'lng': '139.61599329999995',
+  'branchName': 'iioffice of Ueno',
+  'branchAddress': 'Japan, 〒110-0015 Tokyo, 台東区Higashiueno, 2 Chome−18−7 共同ビル上野',
+  'branchImage': 'assets/images/branch-japan.jpg'
+}, {
+  'lat': '35.2808776',
+  'lng': '139.01124920000002',
+  'branchName': 'iioffice of Hiroshima',
+  'branchAddress': '〒730-0053 広島県広島市中区東千田町1-1-61 hitoto広島 ナレッジスクエア1F',
+  'branchImage': 'assets/images/branch-hiroshima.jpg'
+}];
+
+/***/ },
+
+/***/ 191:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_multiple_pin__ = __webpack_require__(150);
+
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__components_multiple_pin__["a" /* default */])();
 
 /***/ }
 

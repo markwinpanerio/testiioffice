@@ -1,4 +1,3 @@
-console.warn("This script is development version.");
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,97 +63,12 @@ console.warn("This script is development version.");
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 657);
+/******/ 	return __webpack_require__(__webpack_require__.s = 194);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 332:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = map;
-
-var _jquery = __webpack_require__(6);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function map() {
-  if (!google) return;
-  google.maps.event.addDomListener(window, 'load', initMap);
-
-  function initMap() {
-
-    if (!(0, _jquery2.default)('#js-map-iioffice')) return;
-
-    var options = {
-      'clickableIcons': false,
-      'streetViewControl': false,
-      'disableDoubleClickZoom': false,
-      'draggable': true,
-      'fullscreenControl': false,
-      'keyboardShortcuts': false,
-      'mapMaker': false,
-      'mapTypeControl': false,
-      'mapTypeControlOptions': {
-        'text': 'Default (depends on viewport size etc.)',
-        'style': 0
-      },
-      'mapTypeId': 'roadmap',
-      'rotateControl': false,
-      'scaleControl': false,
-      'scrollwheel': false,
-      'liControl': false,
-      "zoom": 17,
-      "zoomControl": false
-    };
-
-    var mapCanvas = void 0;
-    var mapLatLng = void 0;
-    var mapOptions = void 0;
-
-    var mapArray = [];
-
-    var mapHooks = (0, _jquery2.default)('#js-map-iioffice');
-
-    _jquery2.default.each(mapHooks, function (index, el) {
-      mapArray[index] = {
-        canvas: (0, _jquery2.default)(el).attr('id'),
-        lat: (0, _jquery2.default)(el).attr('data-lat'),
-        lng: (0, _jquery2.default)(el).attr('data-lng')
-      };
-    });
-
-    _jquery2.default.each(mapArray, function (index, value) {
-      mapCanvas = document.getElementById(value.canvas);
-      mapLatLng = new google.maps.LatLng(value.lat, value.lng);
-      mapOptions = {
-        center: mapLatLng
-      };
-
-      var map = new google.maps.Map(mapCanvas, mapOptions);
-      map.setOptions(options);
-
-      new google.maps.Marker({
-        position: mapLatLng,
-        map: map
-      });
-    });
-  }
-
-  (0, _jquery2.default)(window).on('resize', initMap);
-}
-
-/***/ },
-
-/***/ 6:
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10525,19 +10439,91 @@ return jQuery;
 
 /***/ },
 
-/***/ 657:
+/***/ 147:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+/* harmony export (immutable) */ exports["a"] = map;
 
 
-var _map = __webpack_require__(332);
+function map() {
+  if (!google) return;
+  google.maps.event.addDomListener(window, 'load', initMap);
 
-var _map2 = _interopRequireDefault(_map);
+  function initMap() {
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    if (!__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-map-iioffice')) return;
 
-(0, _map2.default)();
+    const options = {
+      'clickableIcons': false,
+      'streetViewControl': false,
+      'disableDoubleClickZoom': false,
+      'draggable': true,
+      'fullscreenControl': false,
+      'keyboardShortcuts': false,
+      'mapMaker': false,
+      'mapTypeControl': false,
+      'mapTypeControlOptions': {
+        'text': 'Default (depends on viewport size etc.)',
+        'style': 0
+      },
+      'mapTypeId': 'roadmap',
+      'rotateControl': false,
+      'scaleControl': false,
+      'scrollwheel': false,
+      'liControl': false,
+      "zoom": 17,
+      "zoomControl": false
+    };
+
+    let mapCanvas;
+    let mapLatLng;
+    let mapOptions;
+
+    let mapArray = [];
+
+    let mapHooks = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-map-iioffice');
+
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(mapHooks, (index, el) => {
+      mapArray[index] = {
+        canvas: __WEBPACK_IMPORTED_MODULE_0_jquery___default()(el).attr('id'),
+        lat: __WEBPACK_IMPORTED_MODULE_0_jquery___default()(el).attr('data-lat'),
+        lng: __WEBPACK_IMPORTED_MODULE_0_jquery___default()(el).attr('data-lng')
+      };
+    });
+
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(mapArray, (index, value) => {
+      mapCanvas = document.getElementById(value.canvas);
+      mapLatLng = new google.maps.LatLng(value.lat, value.lng);
+      mapOptions = {
+        center: mapLatLng
+      };
+
+      const map = new google.maps.Map(mapCanvas, mapOptions);
+      map.setOptions(options);
+
+      new google.maps.Marker({
+        position: mapLatLng,
+        map: map
+      });
+    });
+  }
+
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).on('resize', initMap);
+}
+
+/***/ },
+
+/***/ 194:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_map__ = __webpack_require__(147);
+
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__components_map__["a" /* default */])();
 
 /***/ }
 

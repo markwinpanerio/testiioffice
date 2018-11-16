@@ -1,4 +1,3 @@
-console.warn("This script is development version.");
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,52 +63,58 @@ console.warn("This script is development version.");
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 653);
+/******/ 	return __webpack_require__(__webpack_require__.s = 190);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 653:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 190:
+/***/ function(module, exports) {
 
-"use strict";
+const editServiceInput = document.querySelectorAll('.js-edit-service-input');
+const editServiceButton = document.querySelector('#js-edit-service-button');
+const editServiceModal = document.querySelector('#js-modal-body');
+let editServiceInputOldValue = [];
 
+$('#service-edit').click(function () {
+  $('#services-info').addClass('hide');
+  $('#services-info-form').removeClass('hide');
+});
 
-var editServiceInput = document.querySelectorAll('.js-edit-service-input');
-var editServiceButton = document.querySelector('#js-edit-service-button');
-var editServiceModal = document.querySelector('#js-modal-body');
-var editServiceInputOldValue = [];
+$('#service-edit-cancel').click(function () {
+  $('#services-info-form').addClass('hide');
+  $('#services-info').removeClass('hide');
+});
 
 function addCommas(value) {
   value += '';
   value = value.replace(',', '');value = value.replace(',', '');value = value.replace(',', '');
   value = value.replace(',', '');value = value.replace(',', '');value = value.replace(',', '');
-  var x = value.split('.');
-  var x1 = x[0];
-  var x2 = x.length > 1 ? '.' + x[1] : '';
-  var rgx = /(\d+)(\d{3})/;
-  while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-  }return x1 + x2;
+  let x = value.split('.');
+  let x1 = x[0];
+  let x2 = x.length > 1 ? '.' + x[1] : '';
+  let rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) x1 = x1.replace(rgx, '$1' + ',' + '$2');
+  return x1 + x2;
 }
 
-for (var iEditServiceInputCount = 0; iEditServiceInputCount < editServiceInput.length; iEditServiceInputCount++) {
+for (let iEditServiceInputCount = 0; iEditServiceInputCount < editServiceInput.length; iEditServiceInputCount++) {
   editServiceInputOldValue.push({
     oldValue: editServiceInput[iEditServiceInputCount].getAttribute('data-value'),
     name: editServiceInput[iEditServiceInputCount].getAttribute('data-name')
   });
 
   editServiceInput[iEditServiceInputCount].addEventListener('keyup', function () {
-    var value = this.value;
+    let value = this.value;
     this.value = addCommas(value);
   });
 }
 
 editServiceButton.addEventListener('click', function () {
-  var editServiceInputNewValue = [];
+  let editServiceInputNewValue = [];
   editServiceModal.innerHTML = '';
 
-  for (var iCompareChanges = 0; iCompareChanges < editServiceInput.length; iCompareChanges++) {
+  for (let iCompareChanges = 0; iCompareChanges < editServiceInput.length; iCompareChanges++) {
 
     //check if value are the same
     //push new array of objects with the name, new value and old value
@@ -124,34 +129,34 @@ editServiceButton.addEventListener('click', function () {
 
     if (editServiceInputNewValue[iCompareChanges].newValue !== editServiceInputNewValue[iCompareChanges].oldValue && editServiceInput[iCompareChanges].value !== '') {
       this.classList.toggle('is-active');
-      var title = document.createElement('h3');
+      let title = document.createElement('h3');
       title.classList.add('modal-title');
-      var titleName = editServiceInputOldValue[iCompareChanges].name;
+      let titleName = editServiceInputOldValue[iCompareChanges].name;
       title.innerHTML = titleName;
 
       //create and element for comparing the two price
-      var compareValueContainer = document.createElement('h4');
+      let compareValueContainer = document.createElement('h4');
       compareValueContainer.classList.add('modal-text');
-      var compareValueValue = editServiceInputOldValue[iCompareChanges].oldValue + ' <span class="edit-services-arrow"></span> ' + editServiceInputNewValue[iCompareChanges].newValue;
+      let compareValueValue = `${editServiceInputOldValue[iCompareChanges].oldValue} <span class="edit-services-arrow"></span> ${editServiceInputNewValue[iCompareChanges].newValue}`;
       compareValueContainer.innerHTML = compareValueValue;
 
       editServiceModal.appendChild(title);
       editServiceModal.appendChild(compareValueContainer);
     } else {
       this.classList.toggle('is-active');
-      var _title = document.createElement('h3');
-      _title.classList.add('modal-title');
-      var _titleName = editServiceInputOldValue[iCompareChanges].name;
-      _title.innerHTML = _titleName;
+      let title = document.createElement('h3');
+      title.classList.add('modal-title');
+      let titleName = editServiceInputOldValue[iCompareChanges].name;
+      title.innerHTML = titleName;
 
       //create and element for comparing the two price
-      var _compareValueContainer = document.createElement('h4');
-      _compareValueContainer.classList.add('modal-text');
-      var _compareValueValue = editServiceInputOldValue[iCompareChanges].oldValue + ' <span class="edit-services-arrow"></span> ' + editServiceInputNewValue[iCompareChanges].oldValue;
-      _compareValueContainer.innerHTML = _compareValueValue;
+      let compareValueContainer = document.createElement('h4');
+      compareValueContainer.classList.add('modal-text');
+      let compareValueValue = `${editServiceInputOldValue[iCompareChanges].oldValue} <span class="edit-services-arrow"></span> ${editServiceInputNewValue[iCompareChanges].oldValue}`;
+      compareValueContainer.innerHTML = compareValueValue;
 
-      editServiceModal.appendChild(_title);
-      editServiceModal.appendChild(_compareValueContainer);
+      editServiceModal.appendChild(title);
+      editServiceModal.appendChild(compareValueContainer);
     }
   }
 

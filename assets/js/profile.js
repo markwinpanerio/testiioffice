@@ -1,4 +1,3 @@
-console.warn("This script is development version.");
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -64,26 +63,12 @@ console.warn("This script is development version.");
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 658);
+/******/ 	return __webpack_require__(__webpack_require__.s = 197);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 339:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _jquery = __webpack_require__(6);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-
-/***/ 6:
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10454,32 +10439,51 @@ return jQuery;
 
 /***/ },
 
-/***/ 658:
+/***/ 155:
+/***/ function(module, exports) {
+
+// import $ from 'jquery';
+
+// $.ajax({
+//   url: '/api/details',
+//   method: 'GET',
+//   success: function(result){
+//     console.log(result);
+//   },
+//   error: function(result) {
+//     console.log(result)
+//   }
+// });
+
+/***/ },
+
+/***/ 197:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_profile__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__services_profile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 
 
-var _jquery = __webpack_require__(6);
 
-var _jquery2 = _interopRequireDefault(_jquery);
-
-__webpack_require__(339);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var $profileContainer = (0, _jquery2.default)('#js-profile');
-var $modal = (0, _jquery2.default)($profileContainer.data('modal-target'));
+const $profileContainer = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#js-profile');
+const $profileLinkButton = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.js-modal-link');
+const $profileCloseButton = __WEBPACK_IMPORTED_MODULE_1_jquery___default()('.js-modal-close');
+let modalId = $profileContainer.data('modal-target');
+const $modal = __WEBPACK_IMPORTED_MODULE_1_jquery___default()(modalId);
 
 if ($modal) {
-  var close = function close() {
+  const $modalButton = $modal.find('.modal-button');
+  const $window = __WEBPACK_IMPORTED_MODULE_1_jquery___default()(window);
+
+  function close() {
     $modal.removeClass('is-shown');
     $modal.fadeOut('is-shown');
     $profileContainer.removeClass('is-lock');
-  };
-
-  var $modalButton = $modal.find('.modal-button');
-  var $window = (0, _jquery2.default)(window);
+  }
 
   $window.on('load', function () {
     if ($profileContainer.hasClass('is-notice')) {
@@ -10494,11 +10498,29 @@ if ($modal) {
   });
 
   $window.keyup(function (e) {
-    if (e.keyCode == 27) {
+    if (e.keyCode === 27) {
       close();
     }
   });
 }
+
+let $hrefValue;
+$profileLinkButton.on('click', function (e) {
+  e.preventDefault();
+  const $this = __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this);
+  $hrefValue = $this.attr('href');
+
+  console.log($hrefValue);
+
+  __WEBPACK_IMPORTED_MODULE_1_jquery___default()($hrefValue).fadeIn();
+  __WEBPACK_IMPORTED_MODULE_1_jquery___default()($hrefValue).addClass('is-shown');
+});
+
+$profileCloseButton.on('click', function () {
+  __WEBPACK_IMPORTED_MODULE_1_jquery___default()($hrefValue).removeClass('is-shown');
+  __WEBPACK_IMPORTED_MODULE_1_jquery___default()($hrefValue).fadeOut('is-shown');
+  $profileContainer.removeClass('is-lock');
+});
 
 /***/ }
 
