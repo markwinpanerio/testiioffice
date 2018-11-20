@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 187);
+/******/ 	return __webpack_require__(__webpack_require__.s = 188);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,7 +10439,7 @@ return jQuery;
 
 /***/ },
 
-/***/ 187:
+/***/ 188:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10453,6 +10453,7 @@ const $bookingPayModal = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-boo
 const $bookingPayModalContent = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-booking-content');
 const $bookingSubmitPayment = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#js-submit-booking-fee');
 const $containerBookingResult = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.l-container-booking-result');
+const $bookingInput = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-booking-input');
 const $plan = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-plan');
 
 let $dataPrice, $dataMonth, $dataDay, $dataPeople, $dataStart, $dataEnd;
@@ -10497,6 +10498,43 @@ $bookingSubmitPayment.on('click', function () {
   $profile.addClass('is-notice');
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()($hrefValue).fadeIn();
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()($hrefValue).addClass('is-shown');
+});
+
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on("click", ".js-booking-input", function () {
+  const inputField = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).find('search-input').focus();
+  if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(inputField).is(":visible")) {
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(inputField).focus();
+  }
+});
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).on('load', function () {
+  let now = new Date();
+
+  let day = ("0" + now.getDate()).slice(-2);
+  let month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+  let today = now.getFullYear() + "-" + month + "-" + day;
+
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name=booking-date]').val(today);
+});
+
+const $customSelect = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-custom-select');
+const $customSelectList = $customSelect.find('.custom-select-list');
+const $customSelectItem = $customSelectList.find('li');
+
+$customSelect.on('click', function () {
+  const $this = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this);
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.custom-select-list').stop().slideUp();
+  $this.find('.custom-select-list').stop().slideToggle();
+});
+
+$customSelectItem.on('click', function () {
+  const $this = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this);
+  const $thisValue = $this.data('select-value');
+  const $prevElement = $this.parents('.js-custom-select').prev();
+  const $select = $prevElement.find('select');
+
+  $this.parents('.js-custom-select').find('.custom-select-value').html(`${$thisValue}`);
+  $select.val(`${$thisValue}`);
 });
 
 /***/ }
