@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 190);
+/******/ 	return __webpack_require__(__webpack_require__.s = 188);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,7 +10439,7 @@ return jQuery;
 
 /***/ },
 
-/***/ 143:
+/***/ 142:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10478,7 +10478,7 @@ function detailMap() {
 
 /***/ },
 
-/***/ 146:
+/***/ 145:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10522,9 +10522,7 @@ function imageUpload() {
         $fileInput.click();
     });
 
-    let imagesToBeUploaded = [];
-    $fileInput.on('change', function () {
-        console.log(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).files);
+    $fileInput.change(function () {
         files = this.files;
         $editPhotoDisp.find('.to-upload').remove();
         // $toAdd.find('.branch-detail-slider-img').css('font-size', '12px').text($toAdd.data('change'));
@@ -10545,15 +10543,15 @@ function imageUpload() {
 
 /***/ },
 
-/***/ 190:
+/***/ 188:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_detail_map__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_image_upload__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_detail_map__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_image_upload__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_I18n__ = __webpack_require__(4);
 
 

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 187);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,7 +10439,7 @@ return jQuery;
 
 /***/ },
 
-/***/ 189:
+/***/ 187:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10449,7 +10449,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 let target = document.querySelector("#js-detail-map");
-
 if (target) {
   let targetAddress = document.querySelector('#js-country-name').innerHTML;
   google.maps.event.addDomListener(window, 'load', initMap);

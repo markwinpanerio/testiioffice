@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 192);
+/******/ 	return __webpack_require__(__webpack_require__.s = 190);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,13 +10439,13 @@ return jQuery;
 
 /***/ },
 
-/***/ 151:
+/***/ 150:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_map_pin_js__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_map_pin_js__ = __webpack_require__(160);
 /* harmony export (immutable) */ exports["a"] = multipleMapPins;
 
 
@@ -10597,7 +10597,7 @@ function multipleMapPins() {
 
 /***/ },
 
-/***/ 161:
+/***/ 160:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10629,12 +10629,12 @@ function multipleMapPins() {
 
 /***/ },
 
-/***/ 192:
+/***/ 190:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_multiple_pin__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_multiple_pin__ = __webpack_require__(150);
 
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__components_multiple_pin__["a" /* default */])();
 

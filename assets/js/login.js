@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 193);
+/******/ 	return __webpack_require__(__webpack_require__.s = 191);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,7 +10439,7 @@ return jQuery;
 
 /***/ },
 
-/***/ 155:
+/***/ 154:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10497,12 +10497,12 @@ $loginForm.on('submit', function () {
 
 /***/ },
 
-/***/ 193:
+/***/ 191:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_login__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_login__ = __webpack_require__(154);
 
 
 /***/ }

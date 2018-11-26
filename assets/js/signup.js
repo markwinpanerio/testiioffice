@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 200);
+/******/ 	return __webpack_require__(__webpack_require__.s = 198);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10439,7 +10439,7 @@ return jQuery;
 
 /***/ },
 
-/***/ 157:
+/***/ 156:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10455,11 +10455,6 @@ let planPrice = localStorage.getItem('plan_price');
 let planAmount = localStorage.getItem('plan_amount');
 let planType = localStorage.getItem('plan_type');
 
-const $document = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document);
-const IS_ACTIVE = 'is-active';
-const $wrap = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-wrap');
-let scrollTop = 0;
-
 function modalPlanContent(id, price, amount, type) {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#plan-id').val(id);
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#submit-price').text(price);
@@ -10468,24 +10463,6 @@ function modalPlanContent(id, price, amount, type) {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#change-type').val(type);
     }
 }
-
-//Disable scroll
-let scrollLock = () => {
-    scrollTop = $document.scrollTop();
-    $wrap.css({
-        'top': `-${scrollTop}px`
-    });
-    $wrap.addClass(IS_ACTIVE);
-};
-
-//Enable scroll
-let scrollAble = () => {
-    $wrap.removeClass(IS_ACTIVE);
-    $wrap.css({
-        'top': ''
-    });
-    $document.scrollTop(scrollTop);
-};
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-plan').click(function () {
     if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).hasClass('js-modal-link')) return false;
@@ -10509,8 +10486,10 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-plan').click(function () {
 });
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-close').click(function () {
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.checkout-modal').removeClass('is-active');
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.checkout-modal').css('transform', 'translateY(-100%)');
     setTimeout(function () {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.checkout-modal').removeClass('is-active');
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.checkout-modal').removeAttr('style');
         localStorage.removeItem('plan_id');
         localStorage.removeItem('plan_price');
         localStorage.removeItem('plan_amount');
@@ -10684,12 +10663,12 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.checkout-form').on('submit', fu
 
 /***/ },
 
-/***/ 200:
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_register__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_register__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 
